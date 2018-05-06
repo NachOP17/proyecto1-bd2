@@ -8,8 +8,16 @@
     <h1>Prueba</h1>
     <h1>{{dist}}</h1>
 
-    <form class="" action="http://localhost:3000/search" method="post">
+    <form class="" action="http://localhost:3000/search" method="get">
       <input type="text" name="texto" value="">
+      <select name="tiempo">
+        <option value="all">Todos</option>
+        <option value="hour">Hora pasada</option>
+        <option value="day">Últimas 24 horas</option>
+        <option value="week">Semana pasada</option>
+        <option value="month">Mes pasado</option>
+        <option value="year">Año pasado</option>
+      </select>
       <button type="submit" name="button">Submit</button>
     </form>
   </body>
