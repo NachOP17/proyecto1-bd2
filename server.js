@@ -38,37 +38,32 @@ app.get('/search', (req, res) => {
   })()
 })
 
-
+function getRedditEndpoint(text, time) {
+  var endpoint = 'https://www.reddit.com/search.json?q=' + text + '&limit=100&t=' + time;
+  if (after != "") {
+    endpoint = endpoint + '&after=' + after;
+  }
+  return endpoint;
+}
 
 function getPosts(text, time) {
   console.log(text)
   console.log(time)
-  var endpoint = 'https://www.reddit.com/search.json?q=' + text + '&limit=100&t=' + time;
-  console.log("Se ejecuto")
+  var endpoint = getRedditEndpoint(text, time);
+  console.log(endpoint);
   if (after == null) {
-    return null
-  } else if (after == "") {
+    return null;
+  } else {
     Request.get(endpoint, (error, response, body) => {
       if (error) {
         return console.log(error);
       }
       let res = JSON.parse(body);
-      after = res.data.after;
-      console.log(res.data.dist)
-      dist = dist + Number(res.data.dist);
-      console.log(after);
-      console.log(dist);
-      getPosts(text, time)
-    });
-  } else {
-    Request.get(`https://www.reddit.com/search.json?q=${text}&t=${time}limit=100&after=${after}`, (error, response, body) => {
-      if (error) {
-        return console.log(error);
+      if (res.data != null) {
+        after = res.data.after;
+        console.log(res.data.dist)
+        dist = dist + Number(res.data.dist);
       }
-      let res = JSON.parse(body);
-      after = res.data.after;
-      console.log(res.data.dist)
-      dist = dist + Number(res.data.dist);
       console.log(after);
       console.log(dist);
       getPosts(text, time)
