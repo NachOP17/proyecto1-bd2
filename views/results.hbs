@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Buscador de Reddit</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <style media="screen">
+      .navbar {
+        background-color: purple !important;
+      }
+
+      .result {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      form {
+        margin: 0 auto;
+      }
+
+      input, select, button {
+        margin: 0 20px;
+      }
+
+      .loader {
+          border: 16px solid #f3f3f3; /* Light grey */
+          border-top: 16px solid #3498db; /* Blue */
+          border-radius: 50%;
+          width: 120px;
+          height: 120px;
+          animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+    </style>
+
+    <nav class="navbar navbar-light bg-light">
+      <form class="form-inline" action="http://127.0.0.1:3000/search" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="texto">
+        <label  for="tiempo">Desde: </label>
+        <select class="form-control mr-sm-2" name="tiempo">
+          <option value="all">Todos</option>
+          <option value="hour">Hora pasada</option>
+          <option value="day">Últimas 24 horas</option>
+          <option value="week">Semana pasada</option>
+          <option value="month">Mes pasado</option>
+          <option value="year">Año pasado</option>
+        </select>
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
+    <div class="result text-center">
+      <h1>{{ dist }}</h1>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
