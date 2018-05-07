@@ -10,9 +10,7 @@ var dist = 0;
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-  res.render('index.hbs', {
-    dist: 'Inserte la palabra o la frase que desea buscar en Reddit'
-  });
+  res.render('index.hbs');
 });
 
 app.get('/search', (req, res) => {
@@ -24,14 +22,14 @@ app.get('/search', (req, res) => {
   let text = query.texto;
   let time = query.tiempo;
   (async () => {
-    text = text.toLowerCase();
-    text = encodeURI(text);
-    getPosts(text, time);
+    var encodedText = text.toLowerCase();
+    encodedText = encodeURI(encodedText);
+    getPosts(encodedText, time);
     var check = () => {
       console.warn('checking')
       if(after == null)
-        res.render('index.hbs', {
-          dist: dist
+        res.render('results.hbs', {
+          dist: `Se encontraron ${dist} posts que contienen la frase ${text}.`
         })
       else
         setTimeout(check, 100)
