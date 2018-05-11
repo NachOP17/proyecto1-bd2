@@ -45,14 +45,22 @@
     <nav class="navbar navbar-light bg-light">
       <form class="form-inline" action="http://127.0.0.1:3000/search" method="get">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="texto">
-        <label  for="tiempo">Desde: </label>
-        <select class="form-control mr-sm-2" name="tiempo">
+        <label  for="tiempo">Filtro: </label>
+        <select class="form-control" name="tiempo">
           <option value="all">Todos</option>
           <option value="hour">Hora pasada</option>
           <option value="day">Últimas 24 horas</option>
           <option value="week">Semana pasada</option>
           <option value="month">Mes pasado</option>
           <option value="year">Año pasado</option>
+        </select>
+        <label  for="likes">Likes: </label>
+        <select class="form-control" name="likes">
+          <option value="">Todos</option>
+          <option value="10_likes">Más de 10 likes</option>
+          <option value="50_likes">Más de 50 likes</option>
+          <option value="100_likes">Más de 100 likes</option>
+          <option value="1000_likes">Más de 1000 likes</option>
         </select>
         <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
       </form>

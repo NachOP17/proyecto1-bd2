@@ -21,15 +21,16 @@ app.get('/search', (req, res) => {
   let query = jsonRes.query;
   let text = query.texto;
   let time = query.tiempo;
+  let likes = query.likes;
   (async () => {
     var encodedText = text.toLowerCase();
     encodedText = encodeURI(encodedText);
-    getPosts(encodedText, time);
+    getPosts(encodedText, time, likes);
     var check = () => {
       console.warn('checking')
       if(after == null)
         res.render('results.hbs', {
-          dist: `Se encontraron ${dist} posts que contienen la frase ${text}.`
+          dist: `Se encontraron ${dist} usuarios hablando acerca de ${text}.`
         })
       else
         setTimeout(check, 100)
@@ -46,9 +47,10 @@ function getRedditEndpoint(text, time) {
   return endpoint;
 }
 
-function getPosts(text, time) {
+function getPosts(text, time, filter) {
   console.log(text)
   console.log(time)
+  console.log(filter);
   var endpoint = getRedditEndpoint(text, time);
   console.log(endpoint);
   if (after == null) {
@@ -61,8 +63,21 @@ function getPosts(text, time) {
       let res = JSON.parse(body);
       if (res.data != null) {
         after = res.data.after;
-        console.log(res.data.dist)
-        dist = dist + Number(res.data.dist);
+                 console.log(res.data.dist)
+                 dist = dist + Number(res.data.dist);
+        switch(filter){
+          case "": dist = dist + getComments(res.data.children);
+                   break;
+          case "10_likes": dist = getLikes(res.data.children, dist, 10);
+                           break;
+          case "50_likes": dist = getLikes(res.data.children, dist, 50);
+                           break;
+          case "100_likes": dist = getLikes(res.data.children, dist, 100);
+                            break;
+          case "1000_likes": dist = getLikes(res.data.children, dist, 1000);
+                             break;
+        }
+
       }
       console.log(after);
       console.log(dist);
@@ -70,6 +85,25 @@ function getPosts(text, time) {
     });
   }
 }
+function getComments(children){
+  var comments = 0;
+  for (i=0; i<children.length; i++){
+    comments+=children[i].data.num_comments;
+  }
+  return comments;
+}
+
+function getLikes(children, dist, likes){
+  for(i=0; i<children.length; i++){
+    if ( (children[i].data.likes < likes) || (!children[i].data.likes) )
+      dist--;
+    else
+      dist += getComments(res.data.children);
+  }
+  return dist;
+}
+
+
 
 app.listen(3000, () => {
   console.log('El servidor está en el puerto 3000');
