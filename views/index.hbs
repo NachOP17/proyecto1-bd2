@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Buscador de Reddit</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <style media="screen">
+      body {
+        background-color: purple;
+      }
+
+      form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      label, select {
+        display: inline-block;
+      }
+
+      button {
+        margin: 30px !important;
+      }
+
+      label {
+        margin: 0 20px;
+      }
+    </style>
+
+    <div class="container-fluid">
+      <form class="text-center container" action="http://127.0.0.1:3000/search" method="get">
+        <div class="row">
+          <div class="col-lg-7">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="texto">
+          </div>
+          <div class="col-lg-5">
+            <div class="form-inline">
+              <label  for="tiempo">Desde: </label>
+              <select class="form-control" name="tiempo">
+                <option value="all">Todos</option>
+                <option value="hour">Hora pasada</option>
+                <option value="day">Últimas 24 horas</option>
+                <option value="week">Semana pasada</option>
+                <option value="month">Mes pasado</option>
+                <option value="year">Año pasado</option>
+              </select>
+              <label  for="likes">Likes: </label>
+              <select class="form-control" name="likes">
+                <option value="">Todos</option>
+                <option value="10_likes">Más de 10 likes</option>
+                <option value="50_likes">Más de 50 likes</option>
+                <option value="100_likes">Más de 100 likes</option>
+                <option value="1000_likes">Más de 1000 likes</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
