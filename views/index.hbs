@@ -9,7 +9,7 @@
   <body>
     <style media="screen">
       body {
-        background-color: purple;
+        background-color: rgba(255, 123, 0, 0.877);
       }
 
       form {
@@ -21,6 +21,11 @@
 
       label, select {
         display: inline-block;
+        margin-top: 30px;
+      }
+
+      input {
+        margin-top: 30px;
       }
 
       button {
@@ -29,16 +34,20 @@
 
       label {
         margin: 0 20px;
+        margin-top: 30px;
       }
     </style>
 
     <div class="container-fluid">
       <form class="text-center container" action="http://127.0.0.1:3000/search" method="get">
+      <div class="row text-center">
+        <img class="img-fluid" src="http://www.freepngimg.com/download/reddit/8-2-reddit-png-file.png" alt="Reddit Logo">
+      </div>
         <div class="row">
-          <div class="col-lg-7">
+          <div class="col-lg-5">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="texto">
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-7">
             <div class="form-inline">
               <label  for="tiempo">Desde: </label>
               <select class="form-control" name="tiempo">
@@ -60,7 +69,7 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-success" type="submit">Search</button>
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
     </div>
 

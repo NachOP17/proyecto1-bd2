@@ -27,7 +27,7 @@ app.get('/search', (req, res) => {
     encodedText = encodeURI(encodedText);
     getPosts(encodedText, time, likes);
     var check = () => {
-      console.warn('checking')
+      console.log('.')
       if(after == null)
         res.render('results.hbs', {
           dist: `Se encontraron ${dist} usuarios hablando acerca de ${text}.`
@@ -81,7 +81,7 @@ function getPosts(text, time, filter) {
       }
       console.log(after);
       console.log(dist);
-      getPosts(text, time)
+      getPosts(text, time, filter)
     });
   }
 }

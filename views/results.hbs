@@ -9,7 +9,7 @@
   <body>
     <style media="screen">
       .navbar {
-        background-color: purple !important;
+        background-color: rgba(255, 123, 0, 0.877) !important;
       }
 
       .result {
@@ -36,6 +36,11 @@
           animation: spin 2s linear infinite;
       }
 
+      img {
+        width: auto;
+        height: 70px;
+      }
+
       @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
@@ -43,6 +48,7 @@
     </style>
 
     <nav class="navbar navbar-light bg-light">
+      <img src="http://www.freepngimg.com/download/reddit/8-2-reddit-png-file.png" alt="" class="navbar-brand">
       <form class="form-inline" action="http://127.0.0.1:3000/search" method="get">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="texto">
         <label  for="tiempo">Filtro: </label>
@@ -62,7 +68,7 @@
           <option value="100_likes">Más de 100 likes</option>
           <option value="1000_likes">Más de 1000 likes</option>
         </select>
-        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
       </form>
     </nav>
     <div class="result text-center">
