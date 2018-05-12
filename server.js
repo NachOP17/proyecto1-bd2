@@ -97,8 +97,8 @@ function getComments(children){
 
 function getLikes(children, dist, likes){
   for(i=0; i<children.length; i++){
-    console.log(`Dist: ${dist}   Likes: ${children[i].data.ups}`);
-    if ( (children[i].data.ups < likes) || (!children[i].data.ups) )
+    console.log(`Dist: ${dist}   Likes: ${children[i].data.score}`);
+    if ( (children[i].data.score < likes) || (!children[i].data.score) )
       dist--;
     else
       dist += getComments(children);
