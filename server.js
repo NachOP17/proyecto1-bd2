@@ -76,6 +76,8 @@ function getPosts(text, time, filter) {
                             break;
           case "1000_likes": dist = getLikes(res.data.children, dist, 1000);
                              break;
+          case "10000_likes": dist = getLikes(res.data.children, dist, 10000);
+                             break;
         }
 
       }
@@ -95,10 +97,11 @@ function getComments(children){
 
 function getLikes(children, dist, likes){
   for(i=0; i<children.length; i++){
-    if ( (children[i].data.likes < likes) || (!children[i].data.likes) )
+    console.log(`Dist: ${dist}   Likes: ${children[i].data.ups}`);
+    if ( (children[i].data.ups < likes) || (!children[i].data.ups) )
       dist--;
     else
-      dist += getComments(res.data.children);
+      dist += getComments(children);
   }
   return dist;
 }
