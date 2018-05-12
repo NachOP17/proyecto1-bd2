@@ -6,6 +6,7 @@ var app = express();
 
 var after = "";
 var dist = 0;
+var port = process.env.PORT || 3000;
 
 app.set('view engine', 'hbs');
 
@@ -77,7 +78,9 @@ function getPosts(text, time, filter) {
           case "1000_likes": dist = getLikes(res.data.children, dist, 1000);
                              break;
           case "10000_likes": dist = getLikes(res.data.children, dist, 10000);
-                             break;
+                              break;
+          case "50000_likes": dist = getLikes(res.data.children, dist, 50000);
+                              break;
         }
 
       }
@@ -108,6 +111,6 @@ function getLikes(children, dist, likes){
 
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('El servidor está en el puerto 3000');
 });
